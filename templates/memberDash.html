@@ -25,22 +25,22 @@
 		</div>
 		<table style="width:100%; font-size: 20px;" class="text-white table-hover table-bordered table-dark table-striped">
   <tr>
-    <th class="text-center " height="50"><strong>DATE</strong></th>
-    <th class="text-center " height="50"><strong>REPORT</strong></th> 
-    <th class="text-center " height="50"><strong>RESULT</strong></th> 
+    <th class="text-center " height="50"><strong>Data</strong></th>
+    <th class="text-center " height="50"><strong>Relatório</strong></th> 
+    <th class="text-center " height="50"><strong>Resultado</strong></th> 
   </tr>
 		{% for each in progress %}
 		<tr>
 		<td class="text-center" height="50">{{each['date']}}</td>
 		<td class="text-center" height="50">{{each['daily_result']}}</td>
 		{% if each['rate']==1 %}
-		<td class="text-center" style="color:green;" height="50">good</td>
+		<td class="text-center" style="color:green;" height="50">bom</td>
 		{% endif %}
 		{% if each['rate']==2 %}
-		<td class="text-center" style="color: yellow;" height="50">average</td>
+		<td class="text-center" style="color: yellow;" height="50">medio</td>
 		{% endif %}
 		{% if each['rate']==3 %}
-		<td class="text-center" style="color: red;" height="50">poor</td>
+		<td class="text-center" style="color: red;" height="50">baixo</td>
 		{% endif %}
 	</tr>
 		{% endfor %}
@@ -48,17 +48,17 @@
 	<br>
 	<br>
 	<div class="jumbotron" style="background-color: #efd7b6; ">
-	<h1>Performance Bar</h1>
+	<h1>Desempenho</h1>
 	<br>
 	  <div class="progress", style="height:30px">
   <div class="progress-bar bg-success  progress-bar-striped progress-bar-animated text-dark font-weight-bold font-italic" style="width:{{good}}%; height:30px" >
-    Good {{good}}%
+    Bom {{good}}%
   </div>
   <div class="progress-bar bg-warning  progress-bar-striped progress-bar-animated text-dark font-weight-bold font-italic" style="width:{{average}}%; height:30px">
-    Average {{average}}%
+    Medio {{average}}%
   </div>
   <div class="progress-bar bg-danger  progress-bar-striped progress-bar-animated text-dark font-weight-bold font-italic " style="width:{{poor}}%; height:30px">
-    Poor {{poor}}%
+    Baixo {{poor}}%
   </div>
 </div> 
 </div>

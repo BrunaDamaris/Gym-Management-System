@@ -2,9 +2,9 @@
 
 {% block body %}
 	<div class="container">
-		<h1><small class="text-white">Welcome</small><span class="font-italic font-weight-bold text-danger"> {{session.username}}</span></h1>
+		<h1><small class="text-white">Bem-vindo(a),<span class="font-weight-bold" style="color: #333333"> {{session.username}}</span></h1>
     <div class="jumbotron" style="background-color: #94bfac;">
-		<h1 style="font-variant: small-caps;">Equipment</h1>
+		<h1 style="font-variant: small-caps;">Equipmento</h1>
     <div class="jumbotron" style="background-color: white;">
 		{% for each in equips %}
 			<p style="font-size: 20px " class="font-italic">{{each['name']}}&nbsp;&nbsp;<strong>x{{each['count']}}</strong></p>
@@ -14,7 +14,7 @@
 
 
     <div class="jumbotron" style="background-color: #f5e7a1;">
-    <h1 style="font-variant: small-caps;">Evaluation</h1>
+    <h1 style="font-variant: small-caps;">Avaliação</h1>
     <div style="font-size: 20px" class="font-italic">
 	{% from "includes/_formhelpers.html" import render_field %}
   	<form method="POST" action="">
@@ -39,7 +39,7 @@
 
 
   <div class="jumbotron" style="background-color: #8fc693;">
-  <h1 style="font-variant: small-caps;">Members that train under you</h1>
+  <h1 style="font-variant: small-caps;">Membros que treinam com você</h1>
   <br>
   {% for each in members %}
     <a href="{{url_for('memberDash', username = each['username'])}}"><button type="button" class="btn btn-outline-dark">{{each['username']}}</button></a>
@@ -51,7 +51,7 @@
 
   <div class="jumbotron" style="background-color: #fbded6">
   <div class="form-group">
-      <a href = "{{url_for('updatePlans')}}"><button type ="button" class="btn btn-secondary btn-lg" >Update Plans</button></a>
+      <a href = "{{url_for('updatePlans')}}"><button type ="button" class="btn btn-secondary btn-lg" >Atualizar Planos</button></a>
     </div>
   </div>
   </div>

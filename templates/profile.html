@@ -2,29 +2,29 @@
 
 {% block body %}
 	<div class="container jumbotron" style=" background-color: #becde5;">
-		<p style="font-size: 25px"><strong style="font-variant: small-caps; ">Name</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{result['name']}}</p>
+		<p style="font-size: 25px"><strong style="font-variant: small-caps; ">Nome</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{result['name']}}</p>
 		<br>
-		<p style="font-size: 25px"><strong style="font-variant: small-caps;">Username</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{result['username']}}</p>
+		<p style="font-size: 25px"><strong style="font-variant: small-caps;">Nome de Usuário</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{result['username']}}</p>
 		<br>
-		{% if result['prof']==1 %}
-		<p style="font-size: 25px"><strong style="font-variant: small-caps;">Profession</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;Owner</p>
+		{% if result['profile']==1 %}
+		<p style="font-size: 25px"><strong style="font-variant: small-caps;">Profissão</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;Dono(a)</p>
 		{% else %}
-			{% if result['prof']==2 %}
-			<p style="font-size: 25px"><strong style="font-variant: small-caps;">Profession</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;Receptionist</p>
+			{% if result['profile']==2 %}
+			<p style="font-size: 25px"><strong style="font-variant: small-caps;">Profissão</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;Receptionista</p>
 			{% else %}
-				{% if result['prof']==3 %}
-				<p style="font-size: 25px"><strong style="font-variant: small-caps;">Profession</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;Trainer</p>
+				{% if result['profile']==3 %}
+				<p style="font-size: 25px"><strong style="font-variant: small-caps;">Profissão</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;Treinador(a)</p>
 				{% else %}
-				<p style="font-size: 25px"><strong style="font-variant: small-caps;">Profession</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;Member</p>
+				<p style="font-size: 25px"><strong style="font-variant: small-caps;">Profissão</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;Membro</p>
 				{% endif %}
 			{% endif %}
 		{% endif %}
 		<br>
-		<p style="font-size: 25px"><strong style="font-variant: small-caps;">Phone</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{result['phone']}}</p>
+		<p style="font-size: 25px"><strong style="font-variant: small-caps;">Número de Telefone</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{result['phone']}}</p>
 		<br>
-		<p style="font-size: 25px"><strong style="font-variant: small-caps;">Street</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{result['street']}}</p>
+		<p style="font-size: 25px"><strong style="font-variant: small-caps;">Endereço</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{result['street']}}</p>
 		<br>
-		<p style="font-size: 25px"><strong style="font-variant: small-caps;">City</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{result['city']}}</p>
+		<p style="font-size: 25px"><strong style="font-variant: small-caps;">Cidade</strong>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{{result['city']}}</p>
 		<br>
 	</div>
 {% endblock %}

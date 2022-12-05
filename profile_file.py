@@ -3,7 +3,7 @@ from flask import Flask, render_template, flash, redirect, url_for, request, ses
 from passlib.hash import sha256_crypt
 
 class ChangePasswordForm(Form):
-	old_password = PasswordField('Senha atualE')
+	old_password = PasswordField('Senha atual')
 	new_password = PasswordField('Nova senha', [
 		validators.DataRequired(),
 		validators.EqualTo('confirm', message = 'As senhas informadas não coincidem')
@@ -12,7 +12,7 @@ class ChangePasswordForm(Form):
 
 class EditForm(Form):
     name = StringField('Nome', [validators.Length(min=1, max=50)])
-    street = StringField('Endereçot', [validators.Length(min = 1, max = 100)])
+    street = StringField('Endereço', [validators.Length(min = 1, max = 100)])
     city = StringField('Cidade', [validators.Length(min = 1, max = 100)])
     phone = StringField('Número de Telefone', [validators.Length(min = 1, max = 100)])
 
