@@ -17,7 +17,7 @@ def login_func(mysql):
 				session['logged_in'] = True
 				session['username'] = username
 				session['profile'] = data['profile']
-				flash('You are logged in', 'success')
+				flash('Logado com sucesso', 'success')
 				if session['profile'] == 1:
 					return redirect(url_for('adminDash'))
 				if session['profile'] == 2:
@@ -26,11 +26,11 @@ def login_func(mysql):
 					return redirect(url_for('trainorDash'))
 				return redirect(url_for('memberDash', username = username))
 			else:
-				error = 'Invalid login'
+				error = 'Login Invalido'
 				return render_template('login.html', error = error)
 			cur.close()
 		else:
-			error = 'Username NOT FOUND'
+			error = 'Nome de Usuário não encontrado'
 			return render_template('login.html', error = error)
 
 	return render_template('login.html')

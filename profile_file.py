@@ -3,18 +3,18 @@ from flask import Flask, render_template, flash, redirect, url_for, request, ses
 from passlib.hash import sha256_crypt
 
 class ChangePasswordForm(Form):
-	old_password = PasswordField('Existing Password')
-	new_password = PasswordField('Password', [
+	old_password = PasswordField('Senha atualE')
+	new_password = PasswordField('Nova senha', [
 		validators.DataRequired(),
-		validators.EqualTo('confirm', message = 'Passwords aren\'t matching pal!, check \'em')
+		validators.EqualTo('confirm', message = 'As senhas informadas não coincidem')
 	])
-	confirm = PasswordField('Confirm Password')
+	confirm = PasswordField('Confirmar senha')
 
 class EditForm(Form):
-    name = StringField('Name', [validators.Length(min=1, max=50)])
-    street = StringField('Street', [validators.Length(min = 1, max = 100)])
-    city = StringField('City', [validators.Length(min = 1, max = 100)])
-    phone = StringField('Phone', [validators.Length(min = 1, max = 100)])
+    name = StringField('Nome', [validators.Length(min=1, max=50)])
+    street = StringField('Endereçot', [validators.Length(min = 1, max = 100)])
+    city = StringField('Cidade', [validators.Length(min = 1, max = 100)])
+    phone = StringField('Número de Telefone', [validators.Length(min = 1, max = 100)])
 
 def update(username,mysql):
 	form = ChangePasswordForm(request.form)
@@ -28,10 +28,10 @@ def update(username,mysql):
 			cur.execute("UPDATE info SET password = %s WHERE username = %s", (sha256_crypt.encrypt(new), username))
 			mysql.connection.commit()
 			cur.close()
-			flash('New password will be in effect from next login!!', 'info')
+			flash('A nova senha entrará em vigor a partir do próximo Login', 'info')
 			return redirect(url_for('memberDash', username = session['username']))
 		cur.close()
-		flash('Old password you entered is wrong!!, try again', 'warning')
+		flash('A senha atual informa está incorreta', 'warning')
 	return render_template('updatePassword.html', form = form)
 
 def look_prof(username,mysql):
@@ -40,22 +40,22 @@ def look_prof(username,mysql):
 		cur.execute("SELECT * FROM info WHERE username = %s", [username])
 		result = cur.fetchone()
 		return render_template('profile.html', result = result)
-	flash('You cannot view other\'s profile', 'warning')
+	flash('Você não pode ver o perfil de outra pessoa', 'warning')
 	if session['profile']==3:
 		return redirect(url_for('trainorDash'))
 	return redirect(url_for('memberDash', username = username))
 
 def edit_prof(username,mysql):
 	if username != session['username']:
-		flash('You aren\'t authorised to edit other\'s details', 'warning')
-		if session['profile']==4:
-			return redirect(url_for('memberDash', username = username))
+		flash('Você não está autorizado a editar os detalhes de outras pessoas', 'warning')
 		if session['profile']==1:
 			return redirect(url_for('adminDash'))
 		if session['profile']==2:
 			return redirect(url_for('recepDash', username = username))
 		if session['profile']==3:
 			return redirect(url_for('trainorDash', username = username))
+		if session['profile']==4:
+			return redirect(url_for('memberDash', username = username))
 
 	cur = mysql.connection.cursor()
 	cur.execute("SELECT * FROM info WHERE username = %s", [username]);
@@ -80,14 +80,14 @@ def edit_prof(username,mysql):
 		q = cur.execute("UPDATE info SET name = %s, street = %s, city = %s, phone = %s WHERE username = %s", (name, street, city, phone, username))
 		mysql.connection.commit()
 		cur.close()
-		flash('You successfully updated your profile!!', 'success')
-		if session['profile']==4:
-			return redirect(url_for('memberDash', username = username))
+		flash('Perfil atualizado com sucesso', 'success')
 		if session['profile']==1:
 			return redirect(url_for('adminDash'))
 		if session['profile']==2:
 			return redirect(url_for('recepDash', username = username))
 		if session['profile']==3:
 			return redirect(url_for('trainorDash', username = username))
+		if session['profile']==4:
+			return redirect(url_for('memberDash', username = username))
 	return render_template('edit_profile.html', form=form)
 

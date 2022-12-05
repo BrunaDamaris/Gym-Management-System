@@ -19,7 +19,7 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'mysql'
 app.config['MYSQL_DB'] = 'gym_db'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
-app.secret_key = 'aabb'
+app.secret_key = 'secret_key_1_2_3'
 
 mysql = MySQL(app)
 
@@ -29,7 +29,7 @@ def is_logged_in(f):
 		if 'logged_in' in session:
 			return f(*args, **kwargs)
 		else:
-			flash('Por favor, realize o ', 'danger')
+			flash('Por favor, realize o Login', 'danger')
 			return redirect(url_for('login'))
 	return wrap
 
@@ -39,7 +39,7 @@ def is_trainor(f):
 		if session['profile'] == 3:
 			return f(*args, **kwargs)
 		else:
-			flash('Não é um treinador', 'danger')
+			flash('Usuário não é um treinador', 'danger')
 			return redirect(url_for('login'))
 	return wrap
 
@@ -49,7 +49,7 @@ def is_admin(f):
 		if session['profile'] == 1:
 			return f(*args, **kwargs)
 		else:
-			flash('Não é um Admin', 'danger')
+			flash('Usuário não é um Admin', 'danger')
 			return redirect(url_for('login'))
 	return wrap
 
@@ -59,7 +59,7 @@ def is_recep_level(f):
 		if session['profile'] <= 2:
 			return f(*args, **kwargs)
 		else:
-			flash('Não tem autorização para ver essa página', 'danger')
+			flash('Usuário não tem autorização para ver essa página', 'danger')
 			return redirect(url_for('login'))
 	return wrap
 
@@ -188,12 +188,12 @@ def edit_profile(username):
 @is_logged_in
 def logout():
 	session.clear()
-	flash('You are now logged out', 'success')
+	flash('Deslogado com sucesso', 'success')
 	return redirect(url_for('login'))
 
 
 if __name__ == "__main__":
-	app.secret_key = 'aabb'
+	app.secret_key = 'secret_key_1_2_3'
 	app.debug = True
 	manager = Manager(app)
 	manager.run()

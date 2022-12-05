@@ -8,18 +8,18 @@ values = []
 choices2 = []
 
 class AddMemberForm(Form):
-    name = StringField('Name', [validators.Length(min=1, max=50)])
-    username = StringField('Username', [validators.InputRequired(), validators.NoneOf(values = values, message = "Username already taken, Please try another")])
-    password = PasswordField('Password', [
+    name = StringField('Nome', [validators.Length(min=1, max=50)])
+    username = StringField('Nome de Usuário', [validators.InputRequired(), validators.NoneOf(values = values, message = "Username already taken, Please try another")])
+    password = PasswordField('Senha', [
         validators.DataRequired(),
-        validators.EqualTo('confirm', message='Passwords do not match')
+        validators.EqualTo('confirm', message='As senhas informadas não coincidem')
     ])
-    confirm = PasswordField('Confirm Password')
-    plan  = RadioField('Select Plan', choices = choices)
-    trainor = SelectField('Select Trainor', choices = choices2)
-    street = StringField('Street', [validators.Length(min = 1, max = 100)])
-    city = StringField('City', [validators.Length(min = 1, max = 100)])
-    phone = StringField('Phone', [validators.Length(min = 1, max = 100)])
+    confirm = PasswordField('Confirmar senha')
+    plan  = RadioField('Selecionar um plano de treino', choices = choices)
+    trainor = SelectField('Selecionar treinador', choices = choices2)
+    street = StringField('Endereço', [validators.Length(min = 1, max = 100)])
+    city = StringField('Cidade', [validators.Length(min = 1, max = 100)])
+    phone = StringField('Número de Telefones', [validators.Length(min = 1, max = 100)])
 
 
 def add(mysql):
@@ -46,7 +46,6 @@ def add(mysql):
 	
 	form = AddMemberForm(request.form)
 	if request.method == 'POST' and form.validate():
-		#app.logger.info("setzdgxfhcgjvkhbjlkn")
 		name = form.name.data
 		username = form.username.data
 		password = sha256_crypt.encrypt(str(form.password.data))
@@ -63,7 +62,7 @@ def add(mysql):
 		cur.close()
 		choices2.clear()
 		choices.clear()
-		flash('You added a new member!!', 'success')
+		flash('Novo membro adicionado', 'success')
 		if(session['profile']==1):
 			return redirect(url_for('adminDash'))
 		return redirect(url_for('recepDash'))
@@ -86,7 +85,7 @@ def delete(mysql):
 		mysql.connection.commit()
 		cur.close()
 		choices.clear()
-		flash('You deleted a member from the GYM!!', 'success')
+		flash('Membro deletado com sucesso', 'success')
 		if(session['profile']==1):
 			return redirect(url_for('adminDash'))
 		return redirect(url_for('recepDash'))
@@ -94,7 +93,7 @@ def delete(mysql):
 
 def openDash(username, mysql):
 	if session['profile']==4 and username!=session['username']:
-		flash('You aren\'t authorised to view other\'s Dashboards', 'danger')
+		flash('Usuário não autorizado a ver essa página', 'danger')
 		return redirect(url_for('memberDash', username = session['username']))
 	if session['profile']!=4:
 		if session['profile']==1:
