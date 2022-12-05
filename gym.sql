@@ -25,13 +25,3 @@ SELECT * FROM members;
 SELECT * FROM trainors;
 SELECT * FROM plans;
 
-DELETE FROM info WHERE username = 'brunadamaris';
-
-DROP TABLE receps;
-DROP TABLE progress;
-DROP TABLE members;
-DROP TABLE trainors;
-DROP TABLE info;
-DROP TABLE equip;
-DROP TABLE plans;
-
