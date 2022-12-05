@@ -15,7 +15,7 @@ CREATE TABLE progress(username VARCHAR(200), date DATE, daily_result VARCHAR(200
 
 CREATE TABLE equip(name VARCHAR(200), count INT,PRIMARY KEY(name));
 
-INSERT INTO info(username, password, name, profile, street, city, phone) VALUES('brunadamaris', '$5$rounds=535000$6gsmZKME5DrojTtI$8WcFkNyq0vGAh7M2splCCf6ZSVDcG3xOEDWP5XBRNL2', 'Bruna Ramos', 1, 'A', 'B', 123456789);
+INSERT INTO info(username, password, name, profile, street, city, phone) VALUES('brunadamaris', '$5$rounds=535000$CUiEsvrYrO/d.JfC$2p44wvE.pdj7TGhHWJE3XUM2lGz/5Y57BtFuqF4bJ23', 'Bruna Ramos', 1, 'A', 'B', 123456789); -- password: admin1
 
 SELECT * FROM info;
 SELECT * FROM equip;
