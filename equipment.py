@@ -4,12 +4,12 @@ from flask import Flask, render_template, flash, redirect, url_for, request, ses
 choices = []
 
 class AddEquipForm(Form):
-	name = StringField('Name', [validators.Length(min = 1, max = 100)])
-	count = IntegerField('Count', [validators.NumberRange(min = 1, max = 25)])
+	name = StringField('Nome', [validators.Length(min = 1, max = 100)])
+	count = IntegerField('Quantidade', [validators.NumberRange(min = 1, max = 25)])
 
 class RemoveEquipForm(Form):
-	name = RadioField('Name', choices = choices)
-	count = IntegerField('Count', [validators.InputRequired()])
+	name = RadioField('Nome', choices = choices)
+	count = IntegerField('Quantidade', [validators.InputRequired()])
 
 def add(mysql):
 	form = AddEquipForm(request.form)
@@ -28,7 +28,7 @@ def add(mysql):
 			cur.execute("INSERT INTO equip(name, count) VALUES(%s, %s)", (name, count))
 		mysql.connection.commit()
 		cur.close()
-		flash('You added a new Equipment!!', 'success')
+		flash('Novo equipamento adicionado', 'success')
 		return redirect(url_for('adminDash'))
 	return render_template('addEquip.html', form = form)
 
@@ -53,8 +53,8 @@ def delete(mysql):
 			mysql.connection.commit()
 			cur.close()
 			choices.clear()
-			flash('You successfully removed some of your equipment!!', 'success')
+			flash('Equipamente removido com sucesso', 'success')
 			return redirect(url_for('adminDash'))
 		else:
-			flash('you must enter valid number', 'danger')
+			flash('Deve inserir um número válido', 'danger')
 	return render_template('removeEquip.html', form = form)

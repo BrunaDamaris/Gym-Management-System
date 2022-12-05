@@ -6,20 +6,20 @@ values = []
 choices = []
 
 class AddTrainorForm(Form):
-	name = StringField('Name', [validators.Length(min = 1, max = 100)])
-	username = StringField('Username', [validators.InputRequired(), validators.NoneOf(values = values, message = "Username already taken, Please try another")])
-	password = PasswordField('Password', [
+	name = StringField('Nome', [validators.Length(min = 1, max = 100)])
+	username = StringField('Nome de Usuário', [validators.InputRequired(), validators.NoneOf(values = values, message = "Username already taken, Please try another")])
+	password = PasswordField('Senha', [
 		validators.DataRequired(),
-		validators.EqualTo('confirm', message = 'Senhas não são iguais')
+		validators.EqualTo('confirm', message = 'As senhas informadas não coincidem')
 	])
-	confirm = PasswordField('Confirm Password')
-	street = StringField('Street', [validators.Length(min = 1, max = 100)])
-	city = StringField('City', [validators.Length(min = 1, max = 100)])
+	confirm = PasswordField('Confirma senha')
+	street = StringField('Endereço', [validators.Length(min = 1, max = 100)])
+	city = StringField('Cidade', [validators.Length(min = 1, max = 100)])
 	prof = 3
-	phone = StringField('Phone', [validators.Length(min = 1, max = 100)])
+	phone = StringField('Número de Telefone', [validators.Length(min = 1, max = 100)])
 
 class DeleteRecepForm(Form):
-	username = SelectField(u'Choose which one you wanted to delete', choices=choices)
+	username = SelectField(u'Escolha qual você deseja excluir', choices=choices)
 
 def add(mysql):
 	values.clear()
@@ -44,7 +44,7 @@ def add(mysql):
 		cur.execute("INSERT INTO receps(username) VALUES(%s)", [username])
 		mysql.connection.commit()
 		cur.close()
-		flash('You recruited a new Receptionist!!', 'success')
+		flash('Recepcionista adicionado', 'success')
 		return redirect(url_for('adminDash'))
 	return render_template('addRecep.html', form=form)
 
@@ -58,7 +58,7 @@ def delete(mysql):
 		tup = (b[i]['username'],b[i]['username'])
 		choices.append(tup)
 	if len(choices)==1:
-		flash('You cannot remove your only receptionist!!', 'danger')
+		flash('Recepcionista não pode ser removido(a) porque é único(a)', 'danger')
 		return redirect(url_for('adminDash'))
 	form = DeleteRecepForm(request.form)
 	if request.method == 'POST':
@@ -68,6 +68,6 @@ def delete(mysql):
 		mysql.connection.commit()
 		cur.close()
 		choices.clear()
-		flash('You removed your receptionist!!', 'success')
+		flash('Recepcionista removido(a)', 'success')
 		return redirect(url_for('adminDash'))
 	return render_template('deleteRecep.html', form = form)

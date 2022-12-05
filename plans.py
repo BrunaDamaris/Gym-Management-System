@@ -2,9 +2,9 @@ from wtforms import Form, StringField, TextAreaField, PasswordField, validators,
 from flask import Flask, render_template, flash, redirect, url_for, request, session, logging
 
 class UpdatePlanForm(Form):
-    name = StringField('Plan Name', [validators.Length(min=1, max=50)])
-    exercise = StringField('Exercise', [validators.Length(min = 1, max = 100)])
-    reps = IntegerField('Reps', [validators.NumberRange(min = 1, max = 20)])
+    name = StringField('Nome do plano', [validators.Length(min=1, max=50)])
+    exercise = StringField('Exercicios', [validators.Length(min = 1, max = 100)])
+    reps = IntegerField('Repetições', [validators.NumberRange(min = 1, max = 20)])
     sets = IntegerField('Sets', [validators.NumberRange(min = 1, max = 20)])
 
 def update(mysql):
@@ -23,6 +23,6 @@ def update(mysql):
 			cur.execute("INSERT INTO plans(name, exercise, sets, reps) VALUES(%s, %s, %s, %s)", (name, exercise, sets, reps))
 		mysql.connection.commit()
 		cur.close()
-		flash('You have updated the plan schemes', 'success')
+		flash('Plano atualizado com sucesso', 'success')
 		return redirect(url_for('trainorDash'))
 	return render_template('addPlan.html', form = form)

@@ -8,23 +8,23 @@ values = []
 choices = []
 
 class AddTrainorForm(Form):
-	name = StringField('Name', [validators.Length(min = 1, max = 100)])
-	username = StringField('Username', [validators.InputRequired(), validators.NoneOf(values = values, message = "Username already taken, Please try another")])
-	password = PasswordField('Password', [
+	name = StringField('Nome', [validators.Length(min = 1, max = 100)])
+	username = StringField('Nome de Usuário', [validators.InputRequired(), validators.NoneOf(values = values, message = "Username already taken, Please try another")])
+	password = PasswordField('Senha', [
 		validators.DataRequired(),
-		validators.EqualTo('confirm', message = 'Senhas não são iguais')
+		validators.EqualTo('confirm', message = 'As senhas informadas não coincidem')
 	])
-	confirm = PasswordField('Confirm Password')
-	street = StringField('Street', [validators.Length(min = 1, max = 100)])
-	city = StringField('City', [validators.Length(min = 1, max = 100)])
+	confirm = PasswordField('Confirmar senha')
+	street = StringField('Endereço', [validators.Length(min = 1, max = 100)])
+	city = StringField('Cidade', [validators.Length(min = 1, max = 100)])
 	prof = 3
-	phone = StringField('Phone', [validators.Length(min = 1, max = 100)])
+	phone = StringField('Número de Telefone', [validators.Length(min = 1, max = 100)])
 
 class trainorForm(Form):
-	name = RadioField('Select Username', choices = choices)
-	date = DateField('Date', format='%Y-%m-%d')
-	report = StringField('Report', [validators.InputRequired()])
-	rate = RadioField('Result', choices = [('good', 'good'),('average', 'average'),('poor', 'poor') ])
+	name = RadioField('Selecionar nome de usuário', choices = choices)
+	date = DateField('Data', format='%Y-%m-%d')
+	report = StringField('Relatório', [validators.InputRequired()])
+	rate = RadioField('Resultado', choices = [('bom', 'bom'),('médio', 'médio'),('baixo', 'baixo') ])
 
 def add(mysql):
 	values.clear()
@@ -50,7 +50,7 @@ def add(mysql):
 		cur.execute("INSERT INTO trainors(username) VALUES(%s)", [username])
 		mysql.connection.commit()
 		cur.close()
-		flash('You recruited a new Trainor!!', 'success')
+		flash('Novo treinador adicinado', 'success')
 		return redirect(url_for('adminDash'))
 	return render_template('addTrainor.html', form=form)
 
@@ -64,7 +64,7 @@ def delete(mysql):
 		choices.append(tup)
 	form = delete.DeleteRecepForm(request.form)
 	if len(choices)==1:
-		flash('You cannot remove your only Trainor!!', 'danger')
+		flash('Treinador não pode ser removido(a) porque é único(a)', 'danger')
 		return redirect(url_for('adminDash'))
 	if request.method == 'POST':
 		username = form.username.data
@@ -77,7 +77,7 @@ def delete(mysql):
 		mysql.connection.commit()
 		cur.close()
 		choices.clear()
-		flash('You removed your Trainor!!', 'success')
+		flash('Treinador removido(a)', 'success')
 		return redirect(url_for('adminDash'))
 	return render_template('deleteRecep.html', form = form)
 
@@ -112,7 +112,7 @@ def openDash(mysql):
 		else:
 			rate = 3
 		if datetime.now().date()<date:
-			flash('You cannot predict furture, buoy!!', 'warning')
+			flash('Data inválida', 'warning')
 			choices.clear()
 			return redirect(url_for('trainorDash'))
 		
@@ -130,7 +130,7 @@ def openDash(mysql):
 			mysql.connection.commit()
 			cur.close()
 			choices.clear()
-			flash('Succesfully updated!', 'success')
+			flash('Atualizado com sucesso', 'success')
 			return redirect(url_for('trainorDash'))
 		
 
@@ -138,7 +138,7 @@ def openDash(mysql):
 		mysql.connection.commit()
 		cur.close()
 		choices.clear()
-		flash('Progress updated and Reported', 'info')
+		flash('Progresso atualizado e relatado', 'info')
 		return redirect(url_for('trainorDash'))
 
 	return render_template('trainorDash.html', equips = equips, form = form, members = members_under)
