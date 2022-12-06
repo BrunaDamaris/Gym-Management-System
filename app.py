@@ -161,7 +161,7 @@ def trainorDash():
 @app.route('/updatePlans', methods = ['GET', 'POST'])
 @is_trainor
 def updatePlans():
-	result = plans.update()
+	result = plans.update(mysql)
 	return result
 
 

@@ -24,7 +24,10 @@ class trainorForm(Form):
 	name = RadioField('Selecionar nome de usuário', choices = choices)
 	date = DateField('Data', format='%Y-%m-%d')
 	report = StringField('Relatório', [validators.InputRequired()])
-	rate = RadioField('Resultado', choices = [('bom', 'bom'),('médio', 'médio'),('baixo', 'baixo') ])
+	rate = RadioField('Resultado', choices = [('bom', 'bom'),('medio', 'medio'),('baixo', 'baixo') ])
+
+class DeleteRecepForm(Form):
+	username = SelectField(u'Escolha qual você deseja excluir', choices=choices)
 
 def add(mysql):
 	values.clear()
@@ -62,7 +65,7 @@ def delete(mysql):
 	for i in range(q):
 		tup = (b[i]['username'],b[i]['username'])
 		choices.append(tup)
-	form = delete.DeleteRecepForm(request.form)
+	form = DeleteRecepForm(request.form)
 	if len(choices)==1:
 		flash('Treinador não pode ser removido(a) porque é único(a)', 'danger')
 		return redirect(url_for('adminDash'))
@@ -105,9 +108,9 @@ def openDash(mysql):
 		username = form.name.data
 		report = form.report.data
 		rate = form.rate.data
-		if rate == 'good':
+		if rate == 'bom':
 			rate = 1
-		elif rate == 'average':
+		elif rate == 'medio':
 			rate = 2
 		else:
 			rate = 3
