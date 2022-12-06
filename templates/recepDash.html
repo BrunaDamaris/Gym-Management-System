@@ -1,16 +1,16 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-	<div class="container jumbotron" style="background-color: #edeba3; ">
+	<div class="container jumbotron">
 		 <h1><small>Bem-vindo(a), {{session.username}}</small></h1>
 		<div class="form-group">
-			<a href = "{{url_for('addMember')}}"><button type ="button" class="btn btn-outline-info btn-lg" >Adicionar Membro</button></a>
+			<a href = "{{url_for('addMember')}}"><button type ="button" class="btn btn-outline-info btn-lg btn-size" >Adicionar Membro</button></a>
 		</div>
 		<div class="form-group">
-			<a href = "{{url_for('deleteMember')}}"><button type ="button" class="btn btn-outline-danger btn-lg" >Remover Membro</button></a>
+			<a href = "{{url_for('deleteMember')}}"><button type ="button" class="btn btn-outline-danger btn-lg btn-size" >Remover Membro</button></a>
 		</div>
 		<div class="form-group">
-			<a href = "{{url_for('viewDetails')}}"><button type ="button" class="btn btn-outline-dark btn-lg" >Ver detalhes</button></a>
+			<a href = "{{url_for('viewDetails')}}"><button type ="button" class="btn btn-outline-dark btn-lg btn-size" >Ver detalhes</button></a>
 		</div>
 	</div>
 {% endblock %}

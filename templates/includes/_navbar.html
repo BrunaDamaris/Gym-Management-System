@@ -22,9 +22,9 @@
               {% endif %}
             {% endif %}
           {% endif %}
-           <li class="nav-item "><a class="nav-link " href="{{url_for('profile',username = session.username)}}">Profile</a></li>
-           <li class="nav-item "><a class="nav-link " href="{{url_for('edit_profile',username = session.username)}}">Edit Profile</a></li>
-            <li class="nav-item "><a class="nav-link " href = "{{url_for('update_password', username = session.username)}}">Update password</a></li>
+           <li class="nav-item "><a class="nav-link " href="{{url_for('profile',username = session.username)}}">Perfil</a></li>
+           <li class="nav-item "><a class="nav-link " href="{{url_for('edit_profile',username = session.username)}}">Editar Perfil</a></li>
+            <li class="nav-item "><a class="nav-link " href = "{{url_for('update_password', username = session.username)}}">Modificar senha</a></li>
           <li class="nav-item "><a class="nav-link " href="/logout">Logout</a></li>
           {% endif %}
         </ul>

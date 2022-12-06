@@ -3,7 +3,6 @@ from flask_mysqldb import MySQL
 from passlib.hash import sha256_crypt
 from flask_script import Manager
 from functools import wraps
-
 import profile_file
 import login_file
 import trainor
@@ -193,7 +192,6 @@ def logout():
 
 
 if __name__ == "__main__":
-	app.secret_key = 'secret_key_1_2_3'
 	app.debug = True
 	manager = Manager(app)
 	manager.run()
