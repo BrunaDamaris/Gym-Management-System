@@ -2,20 +2,20 @@
       
         <ul class="navbar-nav">
           <li class="nav-item ">
-            <a class="nav-link " href="/">Home </a>
+            <a class="nav-link " href="/">Página Inicial</a>
           </li>
           {% if not session.logged_in %}
           <li class="nav-item "><a class="nav-link " href="/login">Login</a></li>
           {% endif %}
 
           {% if session.logged_in %}
-          {% if session.prof == 1 %}
+          {% if session.profile == 1 %}
           <li class="nav-item "><a class="nav-link " href="/adminDash">Dashboard</a></li>
           {% else %}
-            {% if session.prof == 2 %}
+            {% if session.profile == 2 %}
               <li class="nav-item "><a class="nav-link " href="/recepDash">Dashboard</a></li>
             {% else %}
-              {% if session.prof == 3 %}
+              {% if session.profile == 3 %}
                 <li class="nav-item "><a class="nav-link " href="/trainorDash">Dashboard</a></li>
               {% else %}
                 <li class="nav-item "><a class="nav-link " href="{{url_for('memberDash', username = session.username)}}">Dashboard</a></li>

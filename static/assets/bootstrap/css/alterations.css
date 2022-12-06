@@ -57,7 +57,11 @@
 }
 
 .btn-size{
-    width: 300px;
+  width: 300px;
+}
+
+.btn-size2{
+  width: 603px;
 }
 
 .float-container {
@@ -70,4 +74,57 @@
     float: left;
     padding: 10px;
     border: 2px solid red;
-} 
+}
+
+.btn-outline-secondary {
+  color: #333333;
+  background-color: transparent;
+  background-image: none;
+  border-color: #333333;
+}
+
+.btn-outline-secondary:hover {
+  color: #fff;
+  background-color: #333333;
+  border-color: #333333;
+}
+
+.btn-outline-secondary:focus, .btn-outline-secondary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
+}
+
+.btn-outline-secondary.disabled, .btn-outline-secondary:disabled {
+  color: #333333;
+  background-color: transparent;
+}
+
+.btn-outline-secondary:not(:disabled):not(.disabled):active, .btn-outline-secondary:not(:disabled):not(.disabled).active,
+.show > .btn-outline-secondary.dropdown-toggle {
+  color: #fff;
+  background-color: #333333;
+  border-color: #333333;
+}
+
+.btn-outline-secondary:not(:disabled):not(.disabled):active:focus, .btn-outline-secondary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-secondary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
+}
+
+.jumbotron2 {
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  background-color: rgba(1, 1, 1, 0.5);
+  border-radius: 0.3rem;
+}
+
+@media (min-width: 576px) {
+  .jumbotron2 {
+    padding: 4rem 2rem;
+  }
+}
+
+.jumbotron2-fluid {
+  padding-right: 0;
+  padding-left: 0;
+  border-radius: 0;
+}

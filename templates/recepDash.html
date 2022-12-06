@@ -2,7 +2,8 @@
 
 {% block body %}
 	<div class="container jumbotron">
-		 <h1><small>Bem-vindo(a), {{session.username}}</small></h1>
+		<h1><small>Bem-vindo(a), {{session.username}}</small></h1>
+		</p></p>
 		<div class="form-group">
 			<a href = "{{url_for('addMember')}}"><button type ="button" class="btn btn-outline-info btn-lg btn-size" >Adicionar Membro</button></a>
 		</div>

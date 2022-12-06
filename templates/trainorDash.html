@@ -3,9 +3,9 @@
 {% block body %}
 	<div class="container">
 		<h1><small class="text-white">Bem-vindo(a),<span class="font-weight-bold" style="color: #fff"> {{session.username}}</span></h1>
-    <div class="jumbotron" style="background-color: #94bfac;">
-		<h1 style="font-variant: small-caps;">Equipmento</h1>
-    <div class="jumbotron" style="background-color: white;">
+    <div class="jumbotron" style="background-color: #bbd0ff;">
+		<h1 style="font-variant: small-caps;">Equipamento</h1>
+    <div class="jumbotron" style="background-color: #0000;">
 		{% for each in equips %}
 			<p style="font-size: 20px " class="font-italic">{{each['name']}}&nbsp;&nbsp;<strong>x{{each['count']}}</strong></p>
 		{% endfor %}
@@ -13,7 +13,7 @@
     </div>
 
 
-    <div class="jumbotron" style="background-color: #f5e7a1;">
+    <div class="jumbotron" style="background-color: #b8c0ff;">
     <h1 style="font-variant: small-caps;">Avaliação</h1>
     <div style="font-size: 20px" class="font-italic">
 	{% from "includes/_formhelpers.html" import render_field %}
@@ -38,7 +38,7 @@
   <br>
 
 
-  <div class="jumbotron" style="background-color: #8fc693;">
+  <div class="jumbotron" style="background-color: #c8b6ff;">
   <h1 style="font-variant: small-caps;">Membros que treinam com você</h1>
   <br>
   {% for each in members %}
@@ -49,7 +49,7 @@
   </div>
 
 
-  <div class="jumbotron" style="background-color: #fbded6">
+  <div class="jumbotron" style="background-color: #e7c6ff">
   <div class="form-group">
       <a href = "{{url_for('updatePlans')}}"><button type ="button" class="btn btn-secondary btn-lg" >Atualizar Planos</button></a>
     </div>

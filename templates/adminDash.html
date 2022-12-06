@@ -3,6 +3,7 @@
 {% block body %}
 	<div class="container jumbotron" style="margin:auto;">
 		<h1><small>Bem-vindo(a), <span class="font-weight-bold" style="color: #333333"> {{session.username}}</span></h1>
+		</p></p>	
 		<div class="form-group">
 			<a href = "{{url_for('addTrainor')}}"><button type ="button" class="btn btn-outline-info btn-lg btn-size" >Adicionar Treinador</button></a>
 			<a href = "{{url_for('deleteTrainor')}}"><button type ="button" class="btn btn-outline-danger btn-lg btn-size" >Remover Treinador</button></a>
@@ -20,7 +21,7 @@
 			<a href = "{{url_for('deleteMember')}}"><button type ="button" class="btn btn-outline-danger btn-lg btn-size" >Remover Membro</button></a>
 		</div>
 		<div class="form-group">
-			<a href = "{{url_for('viewDetails')}}"><button type ="button" class="btn btn-outline-secondary btn-lg btn-size">Ver detalhes</button></a>
+			<a href = "{{url_for('viewDetails')}}"><button type ="button" class="btn btn-outline-secondary btn-lg btn-size2">Ver detalhes</button></a>
 		</div>
 	</div>
 {% endblock %}

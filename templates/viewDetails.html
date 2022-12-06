@@ -1,11 +1,11 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-	<div class="container">
+		<div class="container jumbotron2" style="margin: auto;">
 			{% for each in result %}
 		 <div class="form-group">
-			<a href = "{{url_for('profile', username = each['username'])}}"><button type ="button" class="btn btn-outline-warning" >{{each['username']}}</button></a>
+			<a href = "{{url_for('profile', username = each['username'])}}"><button type ="button" class="btn btn-outline-warning btn-size" >{{each['username']}}</button></a>
 		</div>
 		 {% endfor %}			 
-	</div
+	</div>
 {% endblock %}
